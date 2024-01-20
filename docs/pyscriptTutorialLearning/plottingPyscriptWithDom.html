@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <head>
+        <link rel='stylesheet' href='styles.css'>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+       
+        <py-env>
+            - numpy
+            - pandas
+            - matplotlib
+        </py-env>
+    
+    </head>
+    <div class="wrappper"></div>
+    <body>
+        <form onsubmit="return false">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="Title">
+        </form> 
+        <form onsubmit="return false">
+            <label for="X-axis">X axis:</label>
+            <input type="text" id="X-axis" name="X-axis" value="X-axis">
+        </form> 
+        <form onsubmit="return false">
+            <label for="Y-axis">Y axis:</label>
+            <input type="text" id="Y-axis" name="Y-axis" value="Y-axis"><br>
+            <input pys-onClick="sub" type="submit" id="btn-form" value="submit">
+        </form> 
+
+
+
+
+   <h3>Output</h3>
+   <p id="Output"></p>
+
+<py-script>
+    import matplotlib.pyplot as plt
+    import numpy as np
+  
+    op = Element("Output")
+    title = Element("title")
+    xAx = Element("X-axis")
+    yAx = Element("Y-axis")
+
+    x = np.random.randn(1000)
+    y = np.random.randn(1000)
+
+    fig, ax = plt.subplots()
+    ax.scatter(x, y)
+    
+    
+    def sub(*args, **kwargs):
+        ax.set(xlabel= xAx.element.value, ylabel = yAx.element.value, title= title.element.value)
+        op.write(fig)
+
+
+</py-script>
+
+<py-script></py-script>
+
+
+
+
+</body>
+</div>
+
+</html>

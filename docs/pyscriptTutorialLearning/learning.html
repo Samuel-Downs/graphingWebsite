@@ -1,0 +1,28 @@
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+       
+        <py-env>
+            - numpy
+            - pandas
+            - matplotlib
+        </py-env>
+    </head>
+    <body>
+<py-script>
+    import matplotlib.pyplot as plt
+    import numpy as np
+            
+    x = np.random.randn(1000)
+    y = np.random.randn(1000)
+
+    fig, ax = plt.subplots()
+    ax.scatter(x, y)
+    fig
+</py-script>
+
+<py-script></py-script>
+    </body>
+</html>

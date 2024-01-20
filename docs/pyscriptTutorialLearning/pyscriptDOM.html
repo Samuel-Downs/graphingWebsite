@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='styles.css'>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+       
+        <py-env>
+            - numpy
+            - pandas
+            - matplotlib
+        </py-env>
+    
+    </head>
+    <div class="wrappper"></div>
+    <body>
+    
+        <br>
+        <textarea name="input_text" id="input_text" class="input_text" cols="30" rows="10" placeholder="Enter your text..."></textarea>
+        <div class="buttons">
+        <button id="run" class="button enterB" pys-onClick="count">Count</button>
+        <button id="clear" class="button clearB" pys-onClick="clear">Clear</button>
+    <p>Output from:</p>
+
+    <p id='Output'></p>
+   
+
+<py-script>
+input_text = Element("input_text")
+
+op = Element("Output")
+input_text1 = document.getElementById("input_text")
+
+def clear(*args, **kwargs):
+    input_text.clear()
+
+def count(*args, **kwargs):
+    op.write(len(input_text.element.value))
+    
+
+
+</py-script>
+
+<py-script></py-script>
+
+
+
+
+</body>
+</div>
+
+</html>

@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='styles.css'>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+       
+        <py-env>
+            - numpy
+            - pandas
+            - matplotlib
+        </py-env>
+
+
+    
+    </head>
+    <div class="wrappper"></div>
+    <body>
+        
+
+   <h3>Output:</h3>
+   <p id="csv"></p>
+
+
+
+
+
+
+<py-script>
+
+    #The mess below is me attempting to get a csv file from my github, but it will not work because the url functions need a server (which I do not have)
+    #The functions will work for csvs with a server ex: https://raw.githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv
+
+
+
+    import pandas as pd 
+    #from pyodide.http import open_url
+
+    from urllib.request import urlopen
+
+    data = urlopen('https://github.com/Samuel-Downs/graphingWebsite/blob/main/python_notebooks/coinMarketDF.csv').read()
+    print(data)
+
+    #df = pd.read_csv("https://github.com/Samuel-Downs/graphingWebsite/blob/main/python_notebooks/coinMarketDF.csv")  
+    #csv = Element('csv')
+    #csv.write(df.head())
+    #print(df)
+    #df = pd.read_csv('coinMarketDF.csv') 
+    
+    #url_content = open_url("https://github.com/Samuel-Downs/graphingWebsite/blob/main/python_notebooks/coinMarketDF.csv")
+   
+    
+
+
+</py-script>
+
+<py-script></py-script>
+
+
+
+
+</body>
+</div>
+
+</html>

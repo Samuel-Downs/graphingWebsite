@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='styles.css'>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+       
+        <py-env>
+            - numpy
+            - pandas
+            - matplotlib
+        </py-env>
+    
+    </head>
+    <div class="wrappper"></div>
+    <body>
+        <form onsubmit="return false">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="Ethan Hunt"><br>
+    
+            <select name="countries" id="countries">
+                <option value="India">India</option>
+                <option value="Germany">Germany</option>
+                <option value="Netherlands">Netherlands</option>
+            </select>
+    
+            <input pys-onClick="sub" type="submit" id="btn-form" value="submit">
+    
+    
+        </form> 
+
+   <h3>Output</h3>
+   <p id="Output"></p>
+
+<py-script>
+    name = Element("name")
+    country = Element("countries")
+    op = Element("Output")
+
+    def sub(*args, **kwargs):
+        countryStr = country.element.value
+        #instead of "Netherlands", it should say "the Netherlands"
+        if (countryStr == "Netherlands"):
+            countryStr = "the " + countryStr
+
+        op.write(name.element.value + " is in the country " + countryStr)
+
+
+    
+
+
+</py-script>
+
+<py-script></py-script>
+
+
+
+
+</body>
+</div>
+
+</html>

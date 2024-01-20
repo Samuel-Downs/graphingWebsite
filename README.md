@@ -1,5 +1,7 @@
 # graphingWebsite
 
+## When using the API in jupyter labs, open jupyter lab with: jupyter lab --NotebookApp.iopub_data_rate_limit=1e10
+
 ## Tutorials I followed while creating this:
 * Pyscript tutorial (playlist): https://www.youtube.com/playlist?list=PLpdmBGJ6ELUJ2ujkBcMQ3n0D2J2exAVTs
 * How to use public API tutorial: https://www.youtube.com/watch?v=2HfSFdPEFRg
@@ -22,3 +24,5 @@
 
 ## API Used:
 * https://coinmarketcap.com/api/
+
+

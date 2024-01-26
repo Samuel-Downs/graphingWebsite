@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.3.3.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.3.3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.3.3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@holoviz/panel@1.3.7/dist/panel.min.js"></script>
+
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.05.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.05.1/pyscript.js"></script>
+  </head>
+  <body>
+    <py-config>
+       packages = [
+          "https://cdn.holoviz.org/panel/1.3.7/dist/wheels/bokeh-3.3.3-py3-none-any.whl",
+          "https://cdn.holoviz.org/panel/1.3.7/dist/wheels/panel-1.3.7-py3-none-any.whl",
+          "numpy","pandas"
+       ]
+    </py-config>
+    <h1>Upload csv</h1>
+
+        
+          
+                <div id="fileinput"></div>
+                <div id="upload"></div>
+
+                <!--<form onsubmit="return false">
+                    <label for="CSV">CSV:</label>
+                    <input type="file" id="CSV" name="CSV" value="CSV" accept=".csv"><br>
+                    <input pys-onClick="process_file" type="submit" id="submit" value="submit">
+                </form> -->
+
+                <div id="table"></div>
+    <py-script>
+import asyncio
+import panel as pn
+import pandas as pd
+from panel.io.pyodide import write
+import js
+
+
+
+
+#fileInput = Element("fileinput")
+fileInput = pn.widgets.FileInput(accept='.csv', width=400)
+uploadButton = pn.widgets.Button(name='upload', button_type = 'primary')
+
+table = pn.widgets.Tabulator(pagination='remote', page_size=10)
+
+
+output = Element("table")
+output.element.style.display = 'none'
+
+def process_file(event):
+    if fileInput.element.value is not None:
+        #output.write(pd.read_csv(io.BytesIO(fileInput.element.value)))
+        table.value = pd.read_csv(io.BytesIO(fileInput.element.value))
+        output.element.style.display = 'block'
+    output.write("Anything?")
+
+uploadButton.on_click(process_file)
+
+async def build():
+    await write(fileInput, 'fileinput')
+    await write(uploadButton, 'upload')
+    await write(table, 'table') 
+
+asyncio.ensure_future(build())
+
+
+#Element("fileinput").write(fileInput)
+#Element("upload").write(uploadButton)
+#Element("table").write(table)
+
+#panel.io.pyodide.show is deprecated in favor of panel.io.pyodide.write
+#write(fileInput, 'fileinput')
+#write(uploadButton, 'upload')
+#write(table, 'table')
+
+#show(fileInput, 'fileinput')
+#show(uploadButton, 'upload')
+#show(table, 'table')
+
+
+#async def main():
+#    await write(fileInput, 'fileinput')
+#    await write(uploadButton, 'upload')
+#    await write(table, 'table')
+
+    </py-script>
+
+
+    <!--<div id="simple_app"></div>
+    <py-script>
+      import panel as pn
+
+      pn.extension(sizing_mode="stretch_width")
+
+      slider = pn.widgets.FloatSlider(start=0, end=10, name='Amplitude')
+
+      def callback(new):
+         return f'Amplitude is: {new}'
+
+      pn.Row(slider, pn.bind(callback, slider)).servable(target='simple_app');
+    </py-script>-->
+  </body>
+</html>
